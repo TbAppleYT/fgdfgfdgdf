@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>time until roblox vc unban</title>
+<style>
+  :root{
+    --bg1:#2b0b4a;
+    --bg2:#6a3fb5;
+    --accent:#ffd6ff;
+    --glass: rgba(255,255,255,0.06);
+    --card: rgba(255,255,255,0.04);
+    --muted: rgba(255,255,255,0.7);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    background: linear-gradient(135deg,var(--bg1),var(--bg2));
+    color: white;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+  }
+
+  /* canvas full screen for particles */
+  #particles{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    width:980px;
+    max-width:96vw;
+    backdrop-filter: blur(6px) saturate(120%);
+    border-radius:18px;
+    padding:28px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.06);
+    display:grid;
+    grid-template-columns: 1fr 380px;
+    gap:22px;
+    align-items:start;
+  }
+
+  header{
+    grid-column:1/-1;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .logo{
+    width:56px;height:56px;border-radius:12px;
+    background:linear-gradient(135deg,#ffd6ff22,#ffffff08);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;color:var(--accent);font-size:18px;
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  h1{
+    margin:0;font-size:20px;text-transform:lowercase;
+    letter-spacing:0.6px;
+  }
+  p.lead{margin:2px 0 0;color:var(--muted);font-size:13px}
+
+  /* left column */
+  .left{
+    padding:18px;
+    border-radius:12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+    border: 1px solid rgba(255,255,255,0.025);
+    min-height:200px;
+  }
+  label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+  textarea,input[type="text"]{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border: none;
+    outline: none;
+    resize:vertical;
+    min-height:86px;
+    background:var(--glass);
+    color:white;
+    font-family:inherit;
+    font-size:13px;
+  }
+  .actions{
+    margin-top:12px;display:flex;gap:10px;align-items:center;
+  }
+  button{
+    padding:10px 14px;border-radius:10px;border:none;cursor:pointer;
+    background:linear-gradient(90deg,#9155e6,#c371ff);color:white;font-weight:600;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+    transition:transform .12s ease;
+  }
+  button:active{transform:translateY(1px) scale(.997)}
+  .muted-btn{
+    background:transparent;border:1px solid rgba(255,255,255,0.06);
+    color:var(--muted);font-weight:600;
+  }
+  .hint{font-size:12px;color:var(--muted);margin-top:10px}
+
+  /* right column - countdown card */
+  .card{
+    padding:20px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);
+    min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  }
+  .time{
+    display:flex;gap:10px;
+  }
+  .segment{
+    min-width:72px;padding:12px 10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    text-align:center;
+  }
+  .num{font-size:28px;font-weight:800;line-height:1}
+  .label{font-size:12px;color:var(--muted);text-transform:lowercase;margin-top:6px}
+
+  .status{font-size:13px;color:var(--muted);text-align:center}
+  .small{font-size:12px;color:var(--muted)}
+
+  footer{grid-column:1/-1;margin-top:8px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+  @media(max-width:880px){
+    .wrap{grid-template-columns:1fr; padding:18px}
+    .left{order:2}
+    .card{order:1}
+  }
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+
+<div class="wrap" role="application" aria-label="time until roblox vc unban">
+  <header>
+<div class="logo">
+  <img src="https://media.tenor.com/9aOx9lve2t8AAAAi/emoji-shrug.gif" alt="vc logo" style="width:100%; height:100%; border-radius:12px;">
+</div>
+
+    <div>
+      <h1>time until roblox vc unban</h1>
+      <p class="lead">paste a unix timestamp (seconds) or paste the json object and import — counts down live.</p>
+    </div>
+  </header>
+
+  <section class="left" aria-labelledby="input-label">
+    <label id="input-label">timestamp or json object</label>
+    <textarea id="input" placeholder='e.g. 1764543619  OR  paste the json you showed'></textarea>
+
+    <div class="actions">
+      <button id="importBtn">import</button>
+      <button id="exampleBtn" class="muted-btn">use example json</button>
+      <button id="clearBtn" class="muted-btn">clear</button>
+    </div>
+
+    <p class="hint">the importer will look for fields named <code>Seconds</code> (or nested like <code>bannedUntil.Seconds</code>). if it finds multiple it picks the first numeric match.</p>
+
+    <div style="margin-top:12px;display:flex;gap:8px;">
+      <button id="copyIso" class="muted-btn">copy target iso</button>
+      <button id="openDate" class="muted-btn">open target date (new tab)</button>
+    </div>
+
+  </section>
+
+  <aside class="card" aria-live="polite">
+    <div class="status" id="status">no timestamp imported yet</div>
+
+    <div class="time" id="timeDisplay" aria-hidden="false" style="margin-top:12px;">
+      <div class="segment">
+        <div class="num" id="days">--</div>
+        <div class="label">days</div>
+      </div>
+      <div class="segment">
+        <div class="num" id="hours">--</div>
+        <div class="label">hours</div>
+      </div>
+      <div class="segment">
+        <div class="num" id="minutes">--</div>
+        <div class="label">minutes</div>
+      </div>
+      <div class="segment">
+        <div class="num" id="seconds">--</div>
+        <div class="label">seconds</div>
+      </div>
+    </div>
+
+    <div style="height:8px"></div>
+    <div class="small" id="targetIso">—</div>
+
+    <div style="height:6px"></div>
+    <button id="stopBtn" class="muted-btn">stop</button>
+  </aside>
+
+<div class="hint">
+  <strong>how to use:</strong>
+  <ol style="margin:6px 0 0 18px; padding:0; text-align:left;">
+    <li>go to <a href="https://voice.roblox.com/v1/settings" target="_blank" style="color:#ffd6ff; text-decoration:underline;">voice.roblox.com/v1/settings</a></li>
+    <li>copy the <strong>entire</strong> code on the website</li>
+    <li>paste it into the textbox and press <strong>import</strong></li>
+  </ol>
+</div>
+
+
+  <footer>
+    <div>made by tbapple</div>
+  </footer>
+</div>
+
+<script>
+/* particle background - lightweight */
+(() => {
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize(){
+    W = canvas.width = innerWidth;
+    H = canvas.height = innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function rand(min,max){ return Math.random()*(max-min)+min }
+
+  function createParticles(n=60){
+    particles = [];
+    for(let i=0;i<n;i++){
+      particles.push({
+        x: rand(0,W),
+        y: rand(0,H),
+        r: rand(0.8,3.6),
+        vx: rand(-0.25,0.25),
+        vy: rand(-0.2,0.2),
+        alpha: rand(0.08,0.38)
+      });
+    }
+  }
+  createParticles(80);
+
+  function step(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of particles){
+      p.x += p.vx;
+      p.y += p.vy;
+      if(p.x < -10) p.x = W+10;
+      if(p.x > W+10) p.x = -10;
+      if(p.y < -10) p.y = H+10;
+      if(p.y > H+10) p.y = -10;
+
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(255,255,255,'+p.alpha+')';
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fill();
+    }
+    // glow overlay
+    const grad = ctx.createLinearGradient(0,0,W,H);
+    grad.addColorStop(0, 'rgba(255,255,255,0.01)');
+    grad.addColorStop(1, 'rgba(0,0,0,0.02)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,W,H);
+
+    requestAnimationFrame(step);
+  }
+  step();
+})();
+
+/* countdown logic */
+(function(){
+  const input = document.getElementById('input');
+  const importBtn = document.getElementById('importBtn');
+  const exampleBtn = document.getElementById('exampleBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const copyIso = document.getElementById('copyIso');
+  const openDate = document.getElementById('openDate');
+  const stopBtn = document.getElementById('stopBtn');
+
+  const status = document.getElementById('status');
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
+  const targetIso = document.getElementById('targetIso');
+
+  let intervalId = null;
+  let targetSeconds = null;
+
+  function fmt(n){ return String(n).padStart(2,'0') }
+
+  function updateDisplay(remainingMs){
+    if(remainingMs <= 0){
+      daysEl.textContent = '00'; hoursEl.textContent='00'; minutesEl.textContent='00'; secondsEl.textContent='00';
+      status.textContent = "unbanned! 🎉";
+      return;
+    }
+    const totalSec = Math.floor(remainingMs/1000);
+    const days = Math.floor(totalSec / 86400);
+    const hours = Math.floor((totalSec % 86400) / 3600);
+    const mins = Math.floor((totalSec % 3600) / 60);
+    const secs = Math.floor(totalSec % 60);
+
+    daysEl.textContent = String(days).padStart(2,'0');
+    hoursEl.textContent = fmt(hours);
+    minutesEl.textContent = fmt(mins);
+    secondsEl.textContent = fmt(secs);
+    status.textContent = "counting down…";
+  }
+
+  function setTargetFromSeconds(sec){
+    if(!Number.isFinite(sec)) return false;
+    targetSeconds = Math.floor(sec);
+    const targetMs = targetSeconds * 1000;
+    targetIso.textContent = new Date(targetMs).toString();
+    if(intervalId) clearInterval(intervalId);
+
+    function tick(){
+      const now = Date.now();
+      const remaining = targetMs - now;
+      updateDisplay(remaining);
+      if(remaining <= 0){
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    }
+    tick();
+    intervalId = setInterval(tick, 1000);
+    return true;
+  }
+
+  function tryParseForSeconds(text){
+    // try direct number match first
+    const numMatch = text.trim().match(/-?\d{9,15}/);
+    if(numMatch){
+      // prefer first long-ish number (seconds typically ~10 digits)
+      const n = Number(numMatch[0]);
+      if(!Number.isNaN(n)) return n;
+    }
+    // try JSON parse and look for key 'Seconds' or nested
+    try{
+      const obj = JSON.parse(text);
+      // deep search for keys named 'Seconds'
+      const queue = [obj];
+      while(queue.length){
+        const cur = queue.shift();
+        if(typeof cur !== 'object' || cur === null) continue;
+        for(const k of Object.keys(cur)){
+          if(k.toLowerCase() === 'seconds'){
+            const val = cur[k];
+            if(typeof val === 'number') return val;
+            if(typeof val === 'string' && val.match(/^\d+$/)) return Number(val);
+          }
+          // push children
+          if(typeof cur[k] === 'object') queue.push(cur[k]);
+        }
+      }
+    }catch(e){
+      // not json
+    }
+    return null;
+  }
+
+  importBtn.addEventListener('click', ()=>{
+    const text = input.value.trim();
+    if(!text){ status.textContent = "paste a timestamp or json first"; return; }
+    const found = tryParseForSeconds(text);
+    if(found === null){
+      // fallback: try parse as numeric
+      const maybe = Number(text);
+      if(!Number.isNaN(maybe) && isFinite(maybe) && maybe > 0){
+        setTargetFromSeconds(maybe);
+        status.textContent = "imported numeric timestamp";
+      } else {
+        status.textContent = "couldn't find a unix seconds value — paste the raw number or the json object";
+      }
+    } else {
+      setTargetFromSeconds(found);
+      status.textContent = "imported seconds from input";
+    }
+  });
+
+  exampleBtn.addEventListener('click', ()=>{
+    const example = `{"isVoiceEnabled":false,"isUserOptIn":true,"isUserEligible":false,"isBanned":true,"banReason":7,"bannedUntil":{"Seconds":1764543619,"Nanos":603000000},"canVerifyAgeForVoice":false}`;
+    input.value = example;
+  });
+
+  clearBtn.addEventListener('click', ()=>{
+    input.value = '';
+    status.textContent = 'cleared input';
+  });
+
+  stopBtn.addEventListener('click', ()=>{
+    if(intervalId) { clearInterval(intervalId); intervalId = null; status.textContent = 'stopped'; }
+    else status.textContent = 'no active countdown';
+  });
+
+  copyIso.addEventListener('click', ()=>{
+    if(!targetSeconds){ status.textContent = 'no target to copy' ; return; }
+    const iso = new Date(targetSeconds*1000).toISOString();
+    navigator.clipboard?.writeText(iso).then(()=> status.textContent='target iso copied');
+  });
+
+  openDate.addEventListener('click', ()=>{
+    if(!targetSeconds){ status.textContent = 'no target to open' ; return; }
+    const url = `https://www.timeanddate.com/worldclock/fixedtime.html?iso=${new Date(targetSeconds*1000).toISOString().slice(0,19)}`;
+    window.open(url, '_blank');
+  });
+
+  // initialize with placeholder example for convenience
+  input.value = '';
+})();
+</script>
+</body>
+</html>
